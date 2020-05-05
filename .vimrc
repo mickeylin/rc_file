@@ -1,53 +1,31 @@
-set nocompatible
+" Plugs
+
+call plug#begin('~/.vim/plugged')
+
+Plug 'tomasr/molokai'                       " colorscheme
+
+call plug#end()
+
 set enc=utf8
-set backspace=indent,eol,start
+filetype plugin on                          " 偵測檔案類型，nerdcommenter 註解用
+set nocompatible                            " 與 vi 非相容模式
+set backspace=indent,eol,start              " 設定 backspace 會刪掉的東西， 預設退到行首，不能退換行
+
+set expandtab                               " tab 用 space
+set tabstop=4                               " tab 4 格 space 長度""
+set shiftwidth=4                            " 設定自動縮排寬度， 全選用 = 縮排時會用到
+set smartindent                             " 比 autoindent 聰明一點，會判斷右括號下一行不要縮排
+" set cinindent                             " 比 smartindent 更聰明一點，會參考程式邏輯，不確定效果先放著
+autocmd FileType make setlocal noexpandtab  " Makefile 恢復用 tab
+
+syntax on
+set t_Co=256                                " 支援 color-256
+colorscheme molokai
+set hlsearch                                " 搜尋的 pattern 會 high light
+set background=dark                         " 有些主題有分 dark/light
+set cursorline                              " 底線
+set number                                  " 行號
+" au BufRead,BufNewFile *.g set syntax=antlr3 " antlr schema(for comiler course)
 
 " key mapping
-imap <S-TAB> <C-N>
-
-" tab space
-set expandtab
-set tabstop=4
-set shiftwidth=4  
-
-set hlsearch
-set background=dark
-set autoindent
-set smartindent
-set cursorline
-set number
-set ruler
-
-" color
-syntax on 
-colorscheme desert
-highlight LineNr cterm=bold ctermfg=DarkGrey ctermbg=NONE
-highlight CursorlineNr cterm=bold ctermfg=yellow ctermbg=NONE
-highlight cursorline cterm=bold
-highlight PmenuSel cterm=underline ctermbg=darkred ctermfg=white
-highlight Pmenu cterm=bold ctermbg=DarkGrey ctermfg=white
-highlight Search ctermbg=DarkCyan ctermfg=Black
-
-" antlr schema
-"au BufRead,BufNewFile *.g set syntax=antlr3
-" Makefile schema
-autocmd FileType make setlocal noexpandtab
-
-
-" NR-16		COLOR NAME 
-" 0			Black
-" 1			DarkBlue
-" 2	     	DarkGreen
-" 3	     	DarkCyan
-" 4	     	DarkRed
-" 5	     	DarkMagenta
-" 6	     	Brown, DarkYellow
-" 7	     	LightGray, LightGrey, Gray, Grey
-" 8	     	DarkGray, DarkGrey
-" 9	     	Blue, LightBlue
-" 10   	    Green, LightGreen
-" 11   	    Cyan, LightCyan
-" 12   	    Red, LightRed
-" 13   	    Magenta, LightMagenta
-" 14   	    Yellow, LightYellow
-" 15   	    White
+nmap <silent> f :noh<CR>                    " no hightlight
